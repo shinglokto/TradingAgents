@@ -211,3 +211,5 @@ Please reference our work if you find *TradingAgents* provides you with some hel
       url={https://arxiv.org/abs/2412.20138}, 
 }
 ```
+
+> **註：** 已將本框架所有提示詞轉換為繁體中文，方便繁體中文使用者閱讀。
