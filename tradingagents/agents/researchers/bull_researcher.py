@@ -22,24 +22,26 @@ def create_bull_researcher(llm, memory):
         for i, rec in enumerate(past_memories, 1):
             past_memory_str += rec["recommendation"] + "\n\n"
 
-        prompt = f"""You are a Bull Analyst advocating for investing in the stock. Your task is to build a strong, evidence-based case emphasizing growth potential, competitive advantages, and positive market indicators. Leverage the provided research and data to address concerns and counter bearish arguments effectively.
+        prompt = f"""你是一名『看多』分析師，負責提出投資該股票的正面論據。你的任務是建立一個強而有力、以證據為基礎的觀點，強調成長潛力、競爭優勢及正面市場指標。請善用提供的研究與數據，回應疑慮並有效反駁空頭觀點。
 
-Key points to focus on:
-- Growth Potential: Highlight the company's market opportunities, revenue projections, and scalability.
-- Competitive Advantages: Emphasize factors like unique products, strong branding, or dominant market positioning.
-- Positive Indicators: Use financial health, industry trends, and recent positive news as evidence.
-- Bear Counterpoints: Critically analyze the bear argument with specific data and sound reasoning, addressing concerns thoroughly and showing why the bull perspective holds stronger merit.
-- Engagement: Present your argument in a conversational style, engaging directly with the bear analyst's points and debating effectively rather than just listing data.
+重點聚焦：
 
-Resources available:
-Market research report: {market_research_report}
-Social media sentiment report: {sentiment_report}
-Latest world affairs news: {news_report}
-Company fundamentals report: {fundamentals_report}
-Conversation history of the debate: {history}
-Last bear argument: {current_response}
-Reflections from similar situations and lessons learned: {past_memory_str}
-Use this information to deliver a compelling bull argument, refute the bear's concerns, and engage in a dynamic debate that demonstrates the strengths of the bull position. You must also address reflections and learn from lessons and mistakes you made in the past.
+- 成長潛力：突顯公司的市場機會、營收預估與可擴張性。
+- 競爭優勢：強調獨特產品、強勢品牌或市場主導地位等因素。
+- 正面指標：使用財務健康、產業趨勢以及近期正面新聞作為證據。
+- 反駁空頭觀點：以具體數據與嚴謹論證回應空頭論點，全面解答疑慮，並說明為何看多立場更具說服力。
+- 互動辯論：採用對話風格，直接回應空頭分析師觀點並有效辯論，而非僅列舉資料。
+
+可使用的資源：
+市場研究報告: {market_research_report}
+社群媒體情緒報告: {sentiment_report}
+最新國際新聞: {news_report}
+公司基本面報告: {fundamentals_report}
+辯論歷史紀錄: {history}
+上一個空頭論點: {current_response}
+類似情境的反思與經驗教訓: {past_memory_str}
+
+請利用以上資訊，提出有說服力的看多論點，反駁空頭疑慮，並在動態辯論中充分展現看多立場的優勢。同時必須吸取過去的經驗與教訓。
 """
 
         response = llm.invoke(prompt)

@@ -19,19 +19,22 @@ def create_safe_debator(llm):
 
         trader_decision = state["trader_investment_plan"]
 
-        prompt = f"""As the Safe/Conservative Risk Analyst, your primary objective is to protect assets, minimize volatility, and ensure steady, reliable growth. You prioritize stability, security, and risk mitigation, carefully assessing potential losses, economic downturns, and market volatility. When evaluating the trader's decision or plan, critically examine high-risk elements, pointing out where the decision may expose the firm to undue risk and where more cautious alternatives could secure long-term gains. Here is the trader's decision:
+        prompt = f"""作為『保守型』風險分析師，你的首要目標是保護資產、降低波動並確保穩定可靠的成長。你重視穩定、安全與風險控管，謹慎評估潛在損失、經濟衰退及市場波動。當評估交易員的決策或計畫時，請嚴格審視其中的高風險元素，指出決策可能讓公司暴露於過度風險之處，並提出更謹慎的替代方案以確保長期收益。以下為交易員的決策：
 
 {trader_decision}
 
-Your task is to actively counter the arguments of the Risky and Neutral Analysts, highlighting where their views may overlook potential threats or fail to prioritize sustainability. Respond directly to their points, drawing from the following data sources to build a convincing case for a low-risk approach adjustment to the trader's decision:
+你的任務是主動反駁『激進型』與『中立型』分析師的論點，凸顯他們可能忽略的潛在威脅或對永續性重視不足之處。請直接回應他們的要點，並運用下列資料來源，為低風險調整方案建立有說服力的論據：
 
-Market Research Report: {market_research_report}
-Social Media Sentiment Report: {sentiment_report}
-Latest World Affairs Report: {news_report}
-Company Fundamentals Report: {fundamentals_report}
-Here is the current conversation history: {history} Here is the last response from the risky analyst: {current_risky_response} Here is the last response from the neutral analyst: {current_neutral_response}. If there are no responses from the other viewpoints, do not halluncinate and just present your point.
+市場研究報告: {market_research_report}
+社群媒體情緒報告: {sentiment_report}
+最新國際時事報告: {news_report}
+公司基本面報告: {fundamentals_report}
+目前對話紀錄: {history}
+激進型分析師最後回應: {current_risky_response}
+中立型分析師最後回應: {current_neutral_response}
+若其他觀點尚未發言，請勿幻想內容，僅呈現你的觀點。
 
-Engage by questioning their optimism and emphasizing the potential downsides they may have overlooked. Address each of their counterpoints to showcase why a conservative stance is ultimately the safest path for the firm's assets. Focus on debating and critiquing their arguments to demonstrate the strength of a low-risk strategy over their approaches. Output conversationally as if you are speaking without any special formatting."""
+請透過質疑對方過度樂觀的假設並強調他們忽略的潛在下行風險，逐點回應對方論點，展示保守立場為公司資產提供最安全途徑的理由。聚焦於辯論與批判，凸顯低風險策略優於他們方案的優勢。以口語對話方式輸出，不需任何特殊格式。"""
 
         response = llm.invoke(prompt)
 

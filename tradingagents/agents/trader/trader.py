@@ -19,15 +19,16 @@ def create_trader(llm, memory):
         for i, rec in enumerate(past_memories, 1):
             past_memory_str += rec["recommendation"] + "\n\n"
 
+        # 將使用者提示翻譯為繁體中文
         context = {
             "role": "user",
-            "content": f"Based on a comprehensive analysis by a team of analysts, here is an investment plan tailored for {company_name}. This plan incorporates insights from current technical market trends, macroeconomic indicators, and social media sentiment. Use this plan as a foundation for evaluating your next trading decision.\n\nProposed Investment Plan: {investment_plan}\n\nLeverage these insights to make an informed and strategic decision.",
+            "content": f"根據團隊分析師的全面分析，以下為針對 {company_name} 制定的投資計畫。此計畫融合了當前技術面趨勢、宏觀經濟指標與社群媒體情緒。請以此計畫為基礎，評估你的下一步交易決策。\n\n建議投資計畫: {investment_plan}\n\n善用這些洞見，做出具策略性的明智決策。",
         }
 
         messages = [
             {
                 "role": "system",
-                "content": f"""You are a trading agent analyzing market data to make investment decisions. Based on your analysis, provide a specific recommendation to buy, sell, or hold. End with a firm decision and always conclude your response with 'FINAL TRANSACTION PROPOSAL: **BUY/HOLD/SELL**' to confirm your recommendation. Do not forget to utilize lessons from past decisions to learn from your mistakes. Here is some reflections from similar situatiosn you traded in and the lessons learned: {past_memory_str}""",
+                "content": f"""你是一名交易代理人，負責分析市場數據以作出投資決策。根據你的分析，請給出明確建議：買入、賣出或持有。最後務必以『FINAL TRANSACTION PROPOSAL: **BUY/HOLD/SELL**』結尾，以確認你的建議。別忘了運用過去決策的經驗教訓，避免重蹈覆轍。以下為來自相似情境的反思與學到的教訓：{past_memory_str}""",
             },
             context,
         ]
