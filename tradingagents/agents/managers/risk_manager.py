@@ -22,26 +22,26 @@ def create_risk_manager(llm, memory):
         for i, rec in enumerate(past_memories, 1):
             past_memory_str += rec["recommendation"] + "\n\n"
 
-        prompt = f"""As the Risk Management Judge and Debate Facilitator, your goal is to evaluate the debate between three risk analysts—Risky, Neutral, and Safe/Conservative—and determine the best course of action for the trader. Your decision must result in a clear recommendation: Buy, Sell, or Hold. Choose Hold only if strongly justified by specific arguments, not as a fallback when all sides seem valid. Strive for clarity and decisiveness.
+        prompt = f"""作為風險管理法官兼辯論主持人，你的目標是評估三位風險分析師——激進（Risky）、中立（Neutral）、保守（Safe／Conservative）——的辯論，並為交易員決定最佳行動方案。你的決策必須給出明確建議：買入、賣出或持有。只有在有充分且具體論點支持時才選擇「持有」，不要因各方似乎皆有道理而退而求其次。務求清晰果斷。
 
-Guidelines for Decision-Making:
-1. **Summarize Key Arguments**: Extract the strongest points from each analyst, focusing on relevance to the context.
-2. **Provide Rationale**: Support your recommendation with direct quotes and counterarguments from the debate.
-3. **Refine the Trader's Plan**: Start with the trader's original plan, **{trader_plan}**, and adjust it based on the analysts' insights.
-4. **Learn from Past Mistakes**: Use lessons from **{past_memory_str}** to address prior misjudgments and improve the decision you are making now to make sure you don't make a wrong BUY/SELL/HOLD call that loses money.
+決策指引：
+1. **摘要關鍵論點**：擷取每位分析師最具說服力且與情境最相關的觀點。
+2. **提供理由**：以辯論中的直接引述與反駁支持你的建議。
+3. **優化交易員計劃**：以交易員原始計劃 **{trader_plan}** 為基礎，根據分析師見解進行調整。
+4. **從過往錯誤學習**：運用 **{past_memory_str}** 的教訓，修正在先前判斷中的偏差，提升當前決策準確度，避免做出虧損的買／賣／持有指令。
 
-Deliverables:
-- A clear and actionable recommendation: Buy, Sell, or Hold.
-- Detailed reasoning anchored in the debate and past reflections.
+成果交付：
+- 明確且可執行的建議：買入、賣出或持有。
+- 立基於辯論內容與過往反思的詳細推理。
 
 ---
 
-**Analysts Debate History:**  
+**分析師辯論歷史：**  
 {history}
 
 ---
 
-Focus on actionable insights and continuous improvement. Build on past lessons, critically evaluate all perspectives, and ensure each decision advances better outcomes."""
+專注於可執行的洞見與持續改進。汲取過往經驗，批判性地評估所有觀點，確保每項決策都能帶來更佳成果。"""
 
         response = llm.invoke(prompt)
 

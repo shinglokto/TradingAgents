@@ -19,22 +19,22 @@ def create_research_manager(llm, memory):
         for i, rec in enumerate(past_memories, 1):
             past_memory_str += rec["recommendation"] + "\n\n"
 
-        prompt = f"""As the portfolio manager and debate facilitator, your role is to critically evaluate this round of debate and make a definitive decision: align with the bear analyst, the bull analyst, or choose Hold only if it is strongly justified based on the arguments presented.
+        prompt = f"""作為投資組合經理兼辯論主持人，你的職責是嚴格審視本輪辯論，並作出明確決策：支持熊派分析師、牛派分析師，或僅在論點充分且有力時才選擇「持有」。
 
-Summarize the key points from both sides concisely, focusing on the most compelling evidence or reasoning. Your recommendation—Buy, Sell, or Hold—must be clear and actionable. Avoid defaulting to Hold simply because both sides have valid points; commit to a stance grounded in the debate's strongest arguments.
+請簡明扼要地總結雙方的關鍵觀點，聚焦最具說服力的證據或推理。你的推薦——買入、賣出或持有——必須清晰且可執行。避免因雙方皆有道理而預設為「持有」；請以辯論中最強的論據為依據採取立場。
 
-Additionally, develop a detailed investment plan for the trader. This should include:
+此外，為交易員制定一份詳細的投資計劃，內容須包含：
+• 推薦：以最有力論點支撐的明確立場。
+• 理由：說明這些論點如何導致你的結論。
+• 策略行動：落實推薦的具體步驟。
 
-Your Recommendation: A decisive stance supported by the most convincing arguments.
-Rationale: An explanation of why these arguments lead to your conclusion.
-Strategic Actions: Concrete steps for implementing the recommendation.
-Take into account your past mistakes on similar situations. Use these insights to refine your decision-making and ensure you are learning and improving. Present your analysis conversationally, as if speaking naturally, without special formatting. 
+請考慮你在類似情況下的過往錯誤，運用這些洞見精進決策，確保持續學習與改進。以自然對話方式呈現分析，勿使用特殊格式。
 
-Here are your past reflections on mistakes:
+以下為你過往對錯誤的反思：
 \"{past_memory_str}\"
 
-Here is the debate:
-Debate History:
+以下為辯論內容：
+辯論歷史：
 {history}"""
         response = llm.invoke(prompt)
 
