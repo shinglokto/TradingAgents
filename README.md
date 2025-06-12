@@ -139,11 +139,11 @@ You will see a screen where you can select your desired tickers, date, LLMs, res
 An interface will appear showing results as they load, letting you track the agent's progress as it runs.
 
 <p align="center">
-  <img src="assets/cli/cli_news.png" width="100%" style="display: inline-block; margin: 0 2%;">
+  <img src="assets/cli/cli_news_cht.png" width="100%" style="display: inline-block; margin: 0 2%;">
 </p>
 
 <p align="center">
-  <img src="assets/cli/cli_transaction.png" width="100%" style="display: inline-block; margin: 0 2%;">
+  <img src="assets/cli/cli_transaction_cht.png" width="100%" style="display: inline-block; margin: 0 2%;">
 </p>
 
 ## TradingAgents Package
